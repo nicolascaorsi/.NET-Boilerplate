@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.DAL", "Boilerplate.DAL\Boilerplate.DAL.csproj", "{C7DBB28B-1DE2-4712-9696-8D09E641BA32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boilerplate.Web", "site\Boilerplate.Web.csproj", "{16DCF7B2-4C1C-4B57-8DDE-E302AD0C96B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7DBB28B-1DE2-4712-9696-8D09E641BA32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7DBB28B-1DE2-4712-9696-8D09E641BA32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7DBB28B-1DE2-4712-9696-8D09E641BA32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7DBB28B-1DE2-4712-9696-8D09E641BA32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16DCF7B2-4C1C-4B57-8DDE-E302AD0C96B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16DCF7B2-4C1C-4B57-8DDE-E302AD0C96B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16DCF7B2-4C1C-4B57-8DDE-E302AD0C96B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16DCF7B2-4C1C-4B57-8DDE-E302AD0C96B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

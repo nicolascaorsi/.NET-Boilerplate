@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/MsBuild/2003">
+    <UsingTask
+        TaskName="CompressorTask"
+        AssemblyFile="Yahoo.Yui.Compressor.MsBuildTask.dll" />
+    <!-- The .NET 2.0 version of the task .. and yes .. that's Model.Net20 folder listed twice .. i know i know...
+    <UsingTask
+        TaskName="CompressorTask"
+        AssemblyFile="..\..\Projects\Yahoo.Yui.Compressor\Model.Net20\Model.Net20\bin\Debug\Yahoo.Yui.Compressor.NET20.dll" />
+    -->
+
+    <!-- Define the output locations. These can be set via the msbuild command line using
+         /p:SourceLocation="$(ProjectDir)"
+         /p:CssOutputFile=$(ProjectDir)../whatever...
+         /p:JavaScriptOutputFile=$(ProjectDir)../whatever...
+         
+         If they are not supplied or are empty, then we the value whatever is supplied, below.
+    -->
+    <PropertyGroup>
+        <CssOutputFile Condition=" '$(CssOutputFile)'=='' ">../Content/application.css</CssOutputFile>
+        <JavaScriptOutputFile Condition=" '$(JavaScriptOutputFile)'=='' ">../Scripts/application.js</JavaScriptOutputFile>
+    </PropertyGroup>
+    
+    
+    <Target Name="MyTaskTarget">
+        <!--
+            ItemGroup\CssFiles or ItemGroup\JavaScriptFiles: add zero to many files you wish to include in this compression task.
+                                                             Don't forget, you can use the wildcard (eg. *.css, *.js) if you feel up to it.
+                                                             Finally, at least one item is required - either a css file or a js file.
+                                                             
+            CssFiles/JavaScriptFiles data format: Please do not touch this.
+            DeleteCssFiles: [Optional] True | Yes | Yeah | Yep | True | FoSho | Fo Sho. Default is False. Anything else is False. (eg. blah = false, xxxx111 = false, etc)
+            CssCompressionType: YuiStockCompression | MichaelAshsRegexEnhancements | HaveMyCakeAndEatIt or BestOfBothWorlds or Hybrid; Default is YuiStockCompression.
+            ObfuscateJavaScript: [Optional] refer to DeleteCssFiles, above.
+            PreserveAllSemicolons: [Optional] refer to DeleteCssFiles, above.
+            DisableOptimizations: [Optional] refer to DeleteCssFiles, above.
+            EncodingType: [Optional] ASCII, BigEndianUnicode, Unicode, UTF32, UTF7, UTF8, Default. Default is 'Default'.
+            DeleteJavaScriptFiles: [Optional] refer to DeleteCssFiles, above.
+            LineBreakPosition: [Optional] the position where a line feed is appened when the next semicolon is reached. Default is -1 (never add a line break).
+                               0 (zero) means add a line break after every semicolon. (This might help with debugging troublesome files).          
+            LoggingType: None | ALittleBit | HardcoreBringItOn;  Hardcore also lists javascript verbose warnings, if there are any (and there usually is :P ).
+            ThreadCulture: [Optional] the culture you want the thread to run under. Default is 'en-gb'.
+            IsEvalIgnored: [Optional] compress any functions that contain 'eval'. Default is False, which means a function that contains
+                           'eval' will NOT be compressed. It's deemed risky to compress a function containing 'eval'. That said,
+                           if the usages are deemed safe this check can be disabled by setting this value to True.
+            PreserveCssComments: [Optional] refer to DeleteCssFiles, above.
+        -->
+        <ItemGroup>
+            <!-- Single files, listed in order of dependency -->
+            <CssFiles Include="$(ProjectPath)../Content/Site.css"/>
+            
+            <JavaScriptFiles Include="$(SourceLocation)../Scripts/common.js"/>
+            
+            <!-- All the files. They will be handled (I assume) in alphabetically. -->
+            <!-- <CssFiles Include="$(SourceLocation)*.css" />
+            <JavaScriptFiles Include="$(SourceLocation)*.js" />
+            -->
+            
+        </ItemGroup>
+        <CompressorTask
+            CssFiles="@(CssFiles)"
+            CssOutputFile="$(CssOutputFile)"
+            CssCompressionType="BestOfBothWorlds"
+            JavaScriptFiles="@(JavaScriptFiles)"
+            ObfuscateJavaScript="True"
+            EncodingType="Default"
+            JavaScriptOutputFile="$(JavaScriptOutputFile)"
+            LoggingType="ALittleBit"
+            ThreadCulture="pt-br"
+            PreserveCssComments="True"
+            />
+    </Target>
+</Project>
