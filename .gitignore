@@ -46,3 +46,7 @@ _ReSharper*/
 
 #NuGet
 packages/
+/site/bin/Boilerplate.DAL.dll
+/site/bin/Boilerplate.DAL.pdb
+/site/bin/Site.dll
+/site/bin/Site.pdb
